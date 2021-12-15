@@ -72,6 +72,7 @@ namespace InterfacePro
                     teach.Name = Request.Name;
                     teach.lstClassName = Request.lstClassName;
                     teach.UpdateDT = DateTime.Now;
+                    break;
                 }
             }
             return GetTeacherDetails(Request.TID);
