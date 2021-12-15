@@ -9,5 +9,8 @@ namespace InterfacePro
         public int TID { get; set; }
         public string Name { get; set; }
         public List<string> lstClassName { get; set; }
+
+        public DateTime CreatedDT { get; set; } = DateTime.Now;
+        public DateTime? UpdateDT { get; set; }
     }
 }

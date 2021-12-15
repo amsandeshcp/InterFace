@@ -6,11 +6,15 @@ namespace InterfacePro
 {
     public interface ITeacher
     {
-        dynamic GetAllTeacher();
+        List<tblteacher> GetAllTeacher();
 
         tblteacher GetTeacherDetails(int TID);
 
         bool DeleteTeacher(int TID);
+
+        tblteacher InsertTeacherDetails(tblteacher Request);
+        tblteacher UpdateTeacherDetails(tblteacher Request);
+
 
         int Count();
     }

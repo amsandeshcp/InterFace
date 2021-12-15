@@ -40,7 +40,7 @@ namespace InterfacePro
             }
         }
 
-        public dynamic GetAllTeacher()
+        public List<tblteacher> GetAllTeacher()
         {
             return obj;
         }
@@ -49,6 +49,34 @@ namespace InterfacePro
         {
             return obj.Find(x => x.TID == TID);
         }
+
+        public tblteacher InsertTeacherDetails(tblteacher Request)
+        {
+            int T_ID = Count() + 1;
+            while (obj.Exists(x => x.TID == T_ID))
+            {
+                T_ID++;
+            }
+
+            obj.Add(new tblteacher { TID = T_ID, Name = Request.Name, lstClassName = Request.lstClassName });
+
+            return GetTeacherDetails(T_ID);
+        }
+
+        public tblteacher UpdateTeacherDetails(tblteacher Request)
+        {
+            foreach (var teach in obj)
+            {
+                if (teach.TID == Request.TID)
+                {
+                    teach.Name = Request.Name;
+                    teach.lstClassName = Request.lstClassName;
+                    teach.UpdateDT = DateTime.Now;
+                }
+            }
+            return GetTeacherDetails(Request.TID);
+        }
+
         #endregion
 
         #region Student 

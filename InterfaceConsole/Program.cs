@@ -1,4 +1,5 @@
 ﻿using InterfacePro;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -57,7 +58,7 @@ namespace InterfaceConsole
             var BeforeDelete = repoTeacher.GetAllTeacher();
             foreach (var item in BeforeDelete)
             {
-                Console.WriteLine($"TID:{item.TID}, Name: {item.Name}, Classes Associated: [{string.Join(", ", item.lstClassName)}]");
+                Console.WriteLine($"TID:{item.TID}, Name: {item.Name}, Classes Associated: [{string.Join(", ", item.lstClassName)}], Created Datetime :{item.CreatedDT}, Update Datetime :{item.UpdateDT}");
             }
             int deletrecordnumber = 1;
             var beforedeleterecordetails = repoTeacher.GetTeacherDetails(deletrecordnumber);
@@ -74,9 +75,26 @@ namespace InterfaceConsole
             var AfterDelete = repoTeacher.GetAllTeacher();
             foreach (var item in AfterDelete)
             {
-                Console.WriteLine($"TID:{item.TID}, Name: {item.Name}, Classes Associated: [{string.Join(", ", item.lstClassName)}]");
+                Console.WriteLine($"TID:{item.TID}, Name: {item.Name}, Classes Associated: [{string.Join(", ", item.lstClassName)}], Created Datetime :{item.CreatedDT}, Update Datetime :{item.UpdateDT}");
             }
 
+            Console.WriteLine($"\n");
+            Console.WriteLine($"Insert new record\n");
+            var sam = new tblteacher { Name = "Pradeep", lstClassName = RepoTeacher.classname.FindAll(x => x.Contains("1")) };
+            Console.WriteLine($"{JsonConvert.SerializeObject(repoTeacher.InsertTeacherDetails(sam))}");
+
+            Console.WriteLine($"\n");
+            Console.WriteLine($"Update new record\n");
+            var Upd = new tblteacher { TID = 5, Name = "Pradeep_Mod", lstClassName = RepoTeacher.classname.FindAll(x => x.Contains("C")) };
+            Console.WriteLine($"{JsonConvert.SerializeObject(repoTeacher.UpdateTeacherDetails(Upd))}");
+
+
+            Console.WriteLine($"\n");
+            Console.WriteLine($"All Record Display\n");
+            foreach (var item in repoTeacher.GetAllTeacher())
+            {
+                Console.WriteLine($"TID:{item.TID}, Name: {item.Name}, Classes Associated: [{string.Join(", ", item.lstClassName)}], Created Datetime :{item.CreatedDT}, Update Datetime :{item.UpdateDT}");
+            }
 
 
         }
