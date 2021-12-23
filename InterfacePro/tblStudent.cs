@@ -8,6 +8,6 @@ namespace InterfacePro
     {
         public int SID { get; set; }
         public string Name { get; set; }
-        public string ClassName { get; set; }
+        public List<string> lstPeriodName { get; set; }
     }
 }
